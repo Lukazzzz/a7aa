@@ -46,21 +46,21 @@ waves = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []],
 
 s_append = ''
 
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
+# fig = plt.figure()
+# ax = fig.add_subplot(1, 1, 1)
 
 # Move left y-axis and bottim x-axis to centre, passing through (0,0)
-ax.spines['left'].set_position('center')
-ax.spines['bottom'].set_position('center')
-
-# Eliminate upper and right axes
-ax.spines['right'].set_color('none')
-ax.spines['top'].set_color('none')
-
-# Show ticks in the left and lower axes only
-ax.xaxis.set_ticks_position('bottom')
-ax.yaxis.set_ticks_position('left')
-ax.set_aspect('equal')
+# ax.spines['left'].set_position('center')
+# ax.spines['bottom'].set_position('center')
+#
+# # Eliminate upper and right axes
+# ax.spines['right'].set_color('none')
+# ax.spines['top'].set_color('none')
+#
+# # Show ticks in the left and lower axes only
+# ax.xaxis.set_ticks_position('bottom')
+# ax.yaxis.set_ticks_position('left')
+# ax.set_aspect('equal')
 
 for i in range(0, 360, phase_shift):
     x_points_layer1 = []
@@ -106,7 +106,7 @@ for i in range(len(waves)):
         start_y = waves[i][1][j]
         end_x = waves[i][0][j+1]
         end_y = waves[i][1][j+1]
-        if start_x-end_x > 1:
+        if abs(start_x-end_x) > 1:
             continue
         else:
             s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
@@ -117,7 +117,7 @@ for i in range(len(waves)):
         start_y = waves[i][3][k]
         end_x = waves[i][2][k+1]
         end_y = waves[i][3][k+1]
-        if start_x-end_x > 1:
+        if abs(start_x-end_x) > 1:
             continue
         else:
             s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
