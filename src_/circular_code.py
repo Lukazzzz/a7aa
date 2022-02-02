@@ -37,11 +37,11 @@ rx_layers=['F.Cu','In1.Cu']
 RXCoilTrackWidth = 0.2
 netclass = 0
 
-# waves[no_wave][j]:
-# j=0 for x points of layer1
-# j=1 for y points of layer1
-# j=2 for x points of layer2
-# j=3 for y points of layer2
+# waves[0][j]:
+# j=0 for x points of layer1 in wave 1
+# j=1 for y points of layer1 in wave 1
+# j=2 for x points of layer2 in wave 1
+# j=3 for y points of layer2 in wave 1
 waves = [[[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []], [[], [], [], []]]
 
 s_append = ''
@@ -106,7 +106,10 @@ for i in range(len(waves)):
         start_y = waves[i][1][j]
         end_x = waves[i][0][j+1]
         end_y = waves[i][1][j+1]
-        s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
+        if start_x-end_x > 1:
+            continue
+        else:
+            s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
                                     % (start_x, start_y, end_x, end_y, RXCoilTrackWidth, rx_layers[0], netclass))
 
     for k in range(len(waves[i][2]) - 1):
@@ -114,7 +117,10 @@ for i in range(len(waves)):
         start_y = waves[i][3][k]
         end_x = waves[i][2][k+1]
         end_y = waves[i][3][k+1]
-        s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
+        if start_x-end_x > 1:
+            continue
+        else:
+            s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
                                     % (start_x, start_y, end_x, end_y, RXCoilTrackWidth, rx_layers[1], netclass))
 
 f=open('kiCad_code.txt','w')
