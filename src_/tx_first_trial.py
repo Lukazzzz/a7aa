@@ -2,6 +2,7 @@ import matplotlib.patches
 import matplotlib.pyplot as plt
 import math
 
+
 def get_arc_points(r, angle, dx, center=(0, 0)):
     l = 2*r*math.cos(math.radians((180-angle)/2))
     x_start = center[0] + l/2

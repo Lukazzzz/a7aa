@@ -33,7 +33,7 @@ step = (2*math.pi)/360
 start_angle = -open_angle_rad/2
 end_angle = open_angle_rad/2
 
-rx_layers=['F.Cu','In1.Cu']
+rx_layers =['F.Cu','In1.Cu']
 RXCoilTrackWidth = 0.2
 netclass = 0
 
@@ -97,8 +97,8 @@ for i in range(0, 360, phase_shift):
     waves[i//60][2] = x_points_layer2
     waves[i//60][3] = y_points_layer2
 
-    # plt.scatter(x_points_layer1, y_points_layer1, color="y")
-    # plt.scatter(x_points_layer2, y_points_layer2, color="r")
+    plt.scatter(x_points_layer1, y_points_layer1, color="y")
+    plt.scatter(x_points_layer2, y_points_layer2, color="r")
 
 for i in range(len(waves)):
     for j in range(len(waves[i][0]) - 1):
@@ -145,4 +145,4 @@ f.close()
 # y_circle = circle_radius * np.sin(angle)
 # plt.plot(x_circle, y_circle)
 
-# plt.show()
+plt.show()
