@@ -1,5 +1,3 @@
-import matplotlib.patches
-import matplotlib.pyplot as plt
 import math
 import numpy as np
 
@@ -65,10 +63,10 @@ for i in range(0, 360, rx_phase_shift):
 
         s_append = s_append + '\n'+("(segment (start %0.3f %0.3f) (end %0.3f %0.3f) (width %0.4f) (layer %s) (net %d))"
                                     % (current_x, current_y, next_x, next_y, RXCoilTrackWidth, current_layer, netclass))
+
         current_x = next_x
         current_y = next_y
         current_layer = next_layer
-
 
 f = open('kiCad_code.txt', 'w')
 f.write(s_append)
